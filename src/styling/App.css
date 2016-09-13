@@ -1,0 +1,40 @@
+
+.global-header {
+  margin: 10px;
+  background: #efc5ca; /* Old browsers */
+  background: -moz-linear-gradient(top,  #efc5ca 0%, #ba2737 12%, #d24b5a 50%, #ba2737 100%, #f18e99 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #efc5ca 0%,#ba2737 12%,#d24b5a 50%,#ba2737 100%,#f18e99 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #efc5ca 0%,#ba2737 12%,#d24b5a 50%,#ba2737 100%,#f18e99 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efc5ca', endColorstr='#f18e99',GradientType=0 ); /* IE6-9 */
+  width: 90%%;
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.header-section {
+  border: blue 2px solid;
+  font-size: Arial;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 2px 2px #ff0000;
+}
+
+.unpub-articles {
+  flex-grow: .7;
+}
+
+.author {
+  flex-grow: .1;
+}
+
+.words {
+  flex-shrink: 1;
+}
+
+.submitted {
+  flex-grow: .1;
+}
