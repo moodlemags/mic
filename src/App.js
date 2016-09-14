@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import './styling/App.css';
+import Render from './Render.js';
+import articleData from './data/articles.json';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="global-header">
-            <a className="header-section unpub-articles">UNPUBLISHED ARTICLES(interpolate #)</a>
-            <a className="header-section author">AUTHOR</a>
-            <a className="header-section words">WORDS</a>
-            <a className="header-section submitted">SUBMITTED</a>
-        </header>
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: [],
 
-        <section className="render-articles">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </section>
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      articles: articleData
+    })
+  }
+
+
+  render() {
+    const childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, {
+      articles: this.state.articles
+    }))
+    console.log('props', this.props);
+    console.log('state', this.state);
+    // console.log(Object.keys(this.state.article_two));
+    // console.log(this.state.article_two.image);
+    return (
+      <div className="main-componenet">
+        <Render Child articles={this.state.articles}/>
+        <div>{childrenWithProps}</div>
       </div>
     );
   }
