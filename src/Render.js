@@ -6,6 +6,7 @@ class Render extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      count: 0,
       articles: [],
       render: []
     }
@@ -16,12 +17,12 @@ class Render extends Component {
     let i
     console.log('mounting props', this.props);
     let data = this.props.articles
-    console.log(data);
+    // console.log(data);
     for (i = 0; i < 11; i++) {
       console.log(data[i]);
         this.state.render.push(data[i])
       }
-      console.log(this.state);
+      // console.log(this.state);
     }
 
 
@@ -32,19 +33,33 @@ class Render extends Component {
 
   onClick(event) {
     console.log('clicking');
+    this.setState({ count: this.state.count + 1 })
     this.clearState();
   }
 
   clearState() {
     this.setState({ render: [] });
     console.log('cleared state');
-    this.handleRender();
+    console.log('count', this.state.count);
+    if (this.state.count <= 2) {
+      this.handleRender();
+    } if (this.state.count >= 3) {
+      console.log('will ajax');
+    }
   }
 
   handleRender(event) {
+    console.log(this.state.count);
     let i
+    let sliced
     let data = this.props.articles
-    let sliced = data.slice(10, 21)
+      if (this.state.count <= 1) {
+        console.log("second 10 articles rendered", sliced);
+        sliced = data.slice(10, 21)
+      } else if (this.state.count == 2){
+        sliced = data.slice(20, 31)
+        console.log( "third 10 articles rendered", sliced);
+      }
     let new_render = []
     console.log('sliced', sliced);
     for (i = 0; i < 11; i++) {

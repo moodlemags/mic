@@ -59,10 +59,9 @@
 }
 
 .unpub-articles {
-  flex-wrap: wrap;
   flex-grow: .6;
   justify-content: flex-start;
-  
+
 }
 
 .author {
