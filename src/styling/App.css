@@ -1,6 +1,8 @@
 
 .global-header {
-  margin: 1%;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
   background: #efc5ca; /* Old browsers */
   background: -moz-linear-gradient(top,  #efc5ca 0%, #ba2737 12%, #d24b5a 50%, #ba2737 100%, #f18e99 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,  #efc5ca 0%,#ba2737 12%,#d24b5a 50%,#ba2737 100%,#f18e99 100%); /* Chrome10-25,Safari5.1-6 */
@@ -31,7 +33,7 @@
   height: 8vh;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-wrap: nowrap;
   align-items: center;
   font-size: Arial;
@@ -57,7 +59,10 @@
 }
 
 .unpub-articles {
+  flex-wrap: wrap;
   flex-grow: .6;
+  justify-content: flex-start;
+  
 }
 
 .author {

@@ -7,8 +7,7 @@ class Render extends Component {
     super(props);
     this.state = {
       articles: [],
-      // article_one: articleData[0],
-      // article_two: articleData[1]
+      render: []
     }
   }
 
@@ -20,19 +19,44 @@ class Render extends Component {
     console.log(data);
     for (i = 0; i < 11; i++) {
       console.log(data[i]);
-        this.state.articles.push(data[i])
+        this.state.render.push(data[i])
       }
       console.log(this.state);
     }
 
 
   componentDidMount() {
-    console.log(this.state.articles[0].title);
+    console.log(this.state.render[0].title);
+  }
 
+
+  onClick(event) {
+    console.log('clicking');
+    this.clearState();
+  }
+
+  clearState() {
+    this.setState({ render: [] });
+    console.log('cleared state');
+    this.handleRender();
+  }
+
+  handleRender(event) {
+    let i
+    let data = this.props.articles
+    let sliced = data.slice(10, 21)
+    let new_render = []
+    console.log('sliced', sliced);
+    for (i = 0; i < 11; i++) {
+      console.log(sliced[i]);
+        new_render.push(sliced[i])
+      }
+      console.log('render array', new_render);
+      this.setState({ render: new_render})
   }
 
   render() {
-    // console.log(this.props);
+    console.log('the STATE render', this.state);
     return (
       <div>
      <header className="global-header">
@@ -43,65 +67,66 @@ class Render extends Component {
       </header>
       <section>
         <div className="article-section-styleone">
-          <span className="unpub-articles"><img src={this.state.articles[0].image} height="70px" width="auto"/> {this.state.articles[0].title}</span>
-          <span className="author">{this.state.articles[0].profile.first_name} {this.state.articles[0].profile.last_name}</span>
-          <span className="words">{this.state.articles[0].words}</span>
-          <span className="submitted">{this.state.articles[0].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[0].image} height="70px" width="auto"/> {this.state.render[0].title}</span>
+          <span className="author">{this.state.render[0].profile.first_name} {this.state.render[0].profile.last_name}</span>
+          <span className="words">{this.state.render[0].words}</span>
+          <span className="submitted">{this.state.render[0].publish_at}</span>
         </div>
         <div className="article-section-styletwo">
-          <span className="unpub-articles"><img src={this.state.articles[1].image} height="70px" width="auto"/> {this.state.articles[1].title}</span>
-          <span className="author">{this.state.articles[1].profile.first_name} {this.state.articles[1].profile.last_name}</span>
-          <span className="words">{this.state.articles[1].words}</span>
-          <span className="submitted">{this.state.articles[1].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[1].image} height="70px" width="auto"/> {this.state.render[1].title}</span>
+          <span className="author">{this.state.render[1].profile.first_name} {this.state.render[1].profile.last_name}</span>
+          <span className="words">{this.state.render[1].words}</span>
+          <span className="submitted">{this.state.render[1].publish_at}</span>
         </div>
         <div className="article-section-styleone">
-          <span className="unpub-articles"><img src={this.state.articles[2].image} height="70px" width="auto"/> {this.state.articles[2].title}</span>
-          <span className="author">{this.state.articles[2].profile.first_name} {this.state.articles[2].profile.last_name}</span>
-          <span className="words">{this.state.articles[2].words}</span>
-          <span className="submitted">{this.state.articles[2].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[2].image} height="70px" width="auto"/> {this.state.render[2].title}</span>
+          <span className="author">{this.state.render[2].profile.first_name} {this.state.render[2].profile.last_name}</span>
+          <span className="words">{this.state.render[2].words}</span>
+          <span className="submitted">{this.state.render[2].publish_at}</span>
         </div>
         <div className="article-section-styletwo">
-          <span className="unpub-articles"><img src={this.state.articles[3].image} height="70px" width="auto"/> {this.state.articles[3].title}</span>
-          <span className="author">{this.state.articles[3].profile.first_name} {this.state.articles[3].profile.last_name}</span>
-          <span className="words">{this.state.articles[3].words}</span>
-          <span className="submitted">{this.state.articles[3].publish_at}</span>
-        </div>
-        <div className="article-section-styletwo">
-          <span className="unpub-articles"><img src={this.state.articles[4].image} height="70px" width="auto"/> {this.state.articles[4].title}</span>
-          <span className="author">{this.state.articles[4].profile.first_name} {this.state.articles[4].profile.last_name}</span>
-          <span className="words">{this.state.articles[4].words}</span>
-          <span className="submitted">{this.state.articles[4].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[3].image} height="70px" width="auto"/> {this.state.render[3].title}</span>
+          <span className="author">{this.state.render[3].profile.first_name} {this.state.render[3].profile.last_name}</span>
+          <span className="words">{this.state.render[3].words}</span>
+          <span className="submitted">{this.state.render[3].publish_at}</span>
         </div>
         <div className="article-section-styleone">
-          <span className="unpub-articles"><img src={this.state.articles[5].image} height="70px" width="auto"/> {this.state.articles[5].title}</span>
-          <span className="author">{this.state.articles[5].profile.first_name} {this.state.articles[5].profile.last_name}</span>
-          <span className="words">{this.state.articles[5].words}</span>
-          <span className="submitted">{this.state.articles[5].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[4].image} height="70px" width="auto"/> {this.state.render[4].title}</span>
+          <span className="author">{this.state.render[4].profile.first_name} {this.state.render[4].profile.last_name}</span>
+          <span className="words">{this.state.render[4].words}</span>
+          <span className="submitted">{this.state.render[4].publish_at}</span>
         </div>
         <div className="article-section-styletwo">
-          <span className="unpub-articles"><img src={this.state.articles[6].image} height="70px" width="auto"/> {this.state.articles[6].title}</span>
-          <span className="author">{this.state.articles[6].profile.first_name} {this.state.articles[6].profile.last_name}</span>
-          <span className="words">{this.state.articles[6].words}</span>
-          <span className="submitted">{this.state.articles[6].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[5].image} height="70px" width="auto"/> {this.state.render[5].title}</span>
+          <span className="author">{this.state.render[5].profile.first_name} {this.state.render[5].profile.last_name}</span>
+          <span className="words">{this.state.render[5].words}</span>
+          <span className="submitted">{this.state.render[5].publish_at}</span>
         </div>
         <div className="article-section-styleone">
-          <span className="unpub-articles"><img src={this.state.articles[7].image} height="70px" width="auto"/> {this.state.articles[7].title}</span>
-          <span className="author">{this.state.articles[7].profile.first_name} {this.state.articles[7].profile.last_name}</span>
-          <span className="words">{this.state.articles[7].words}</span>
-          <span className="submitted">{this.state.articles[7].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[6].image} height="70px" width="auto"/> {this.state.render[6].title}</span>
+          <span className="author">{this.state.render[6].profile.first_name} {this.state.render[6].profile.last_name}</span>
+          <span className="words">{this.state.render[6].words}</span>
+          <span className="submitted">{this.state.render[6].publish_at}</span>
         </div>
         <div className="article-section-styletwo">
-          <span className="unpub-articles"><img src={this.state.articles[8].image} height="70px" width="auto"/> {this.state.articles[8].title}</span>
-          <span className="author">{this.state.articles[8].profile.first_name} {this.state.articles[8].profile.last_name}</span>
-          <span className="words">{this.state.articles[8].words}</span>
-          <span className="submitted">{this.state.articles[8].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[7].image} height="70px" width="auto"/> {this.state.render[7].title}</span>
+          <span className="author">{this.state.render[7].profile.first_name} {this.state.render[7].profile.last_name}</span>
+          <span className="words">{this.state.render[7].words}</span>
+          <span className="submitted">{this.state.render[7].publish_at}</span>
         </div>
         <div className="article-section-styleone">
-          <span className="unpub-articles"><img src={this.state.articles[9].image} height="70px" width="auto"/> {this.state.articles[9].title}</span>
-          <span className="author">{this.state.articles[9].profile.first_name} {this.state.articles[9].profile.last_name}</span>
-          <span className="words">{this.state.articles[9].words}</span>
-          <span className="submitted">{this.state.articles[9].publish_at}</span>
+          <span className="unpub-articles"><img src={this.state.render[8].image} height="70px" width="auto"/> {this.state.render[8].title}</span>
+          <span className="author">{this.state.render[8].profile.first_name} {this.state.render[8].profile.last_name}</span>
+          <span className="words">{this.state.render[8].words}</span>
+          <span className="submitted">{this.state.render[8].publish_at}</span>
         </div>
+        <div className="article-section-styletwo">
+          <span className="unpub-articles"><img src={this.state.render[9].image} height="70px" width="auto"/> {this.state.render[9].title}</span>
+          <span className="author">{this.state.render[9].profile.first_name} {this.state.render[9].profile.last_name}</span>
+          <span className="words">{this.state.render[9].words}</span>
+          <span className="submitted">{this.state.render[9].publish_at}</span>
+        </div>
+        <button onClick={(event) => this.onClick(event)}>Load More</button>
       </section>
       </div>
   )}
