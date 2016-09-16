@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styling/App.css';
-
+import ajaxHelpers from './util/helpers.js';
 
 class Render extends Component {
   constructor(props) {
@@ -27,7 +27,8 @@ class Render extends Component {
 
 
   componentDidMount() {
-    console.log(this.state.render[0].title);
+    console.log(this.state);
+
   }
 
 
@@ -45,6 +46,7 @@ class Render extends Component {
       this.handleRender();
     } if (this.state.count >= 3) {
       console.log('will ajax');
+      this.handleAjax();
     }
   }
 
@@ -68,6 +70,14 @@ class Render extends Component {
       }
       console.log('render array', new_render);
       this.setState({ render: new_render})
+  }
+
+  handleAjax() {
+    console.log('hitting ajax');
+    ajaxHelpers.getFirstTen()
+    .then(function(response){
+      console.log('response', response);
+    }.bind(this));
   }
 
   render() {

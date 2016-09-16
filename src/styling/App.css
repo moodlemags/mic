@@ -49,7 +49,7 @@
   height: 8vh;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-wrap: nowrap;
   align-items: center;
   font-size: Arial;
@@ -61,7 +61,6 @@
 .unpub-articles {
   flex-grow: .6;
   justify-content: flex-start;
-
 }
 
 .author {
@@ -74,4 +73,33 @@
 
 .submitted {
   flex-grow: .1;
+}
+
+.article-section-styleone .author {
+  position: fixed;
+  left: 64vw;
+}
+
+.article-section-styletwo .author {
+  position: fixed;
+  left: 64vw;
+}
+
+.article-section-styleone .words {
+  position: fixed;
+  left: 76vw;
+}
+
+.article-section-styletwo .words {
+  position: fixed;
+  left: 76vw;
+}
+
+.article-section-styletwo .submitted {
+  position: fixed;
+  left: 82vw;
+}
+.article-section-styleone .submitted {
+  position: fixed;
+  left: 82vw;
 }
