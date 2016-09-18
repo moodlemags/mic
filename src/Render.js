@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styling/App.css';
-import ajaxHelpers from './util/helpers.js';
+import $ from "jquery";
+import firebase from './util/helpers.js';
 
 class Render extends Component {
   constructor(props) {
@@ -74,10 +75,21 @@ class Render extends Component {
 
   handleAjax() {
     console.log('hitting ajax');
-    ajaxHelpers.getFirstTen()
-    .then(function(response){
-      console.log('response', response);
-    }.bind(this));
+    // ajaxHelpers.getFirstTen()
+    // .then(function(response){
+    //   console.log('response', response);
+    // }.bind(this));
+      // let url = '../more-articles.json'
+      // console.log( root );
+      // $.ajax({
+      //   url: url,
+      // }).done(function(response){
+      //   console.log("response: ", response);
+      firebase.getFirstTen().then(res => {
+      console.log('saved responses', res);
+    });
+
+// });
   }
 
   render() {
