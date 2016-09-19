@@ -11,7 +11,8 @@ class Render extends Component {
       articles: [],
       render: [],
       wordCount: [],
-      publishedAt: []
+      slice0: 0,
+      slice1: 11
     }
   }
 
@@ -31,12 +32,13 @@ class Render extends Component {
 
   componentDidMount() {
     console.log(this.state);
-
   }
 
 
   onClick(event) {
     console.log('clicking');
+    this.setState({ slice0: this.state.slice0 += 10, slice1: this.state.slice1 += 10})
+    console.log(this.state);
     this.clearState();
   }
 
@@ -85,12 +87,13 @@ class Render extends Component {
         this.setState({render: new_render, count: this.state.count + 1 })
       console.log('saved responses', new_render);
     });
-  } else if (this.state.count === 4) {
-  firebase.getMore().then(res => {
-    let new_render = res.slice(10,21)
-    this.setState({render: new_render })
-  console.log('saved responses', new_render);
-}); }
+  // } else if (this.state.count === 4) {
+  // firebase.getMore().then(res => {
+  //   let new_render = res.slice(10,21)
+  //   this.setState({render: new_render })
+  // console.log('saved responses', new_render);
+// });
+}
   }
 
   handleSort() {
@@ -118,7 +121,7 @@ class Render extends Component {
     return (
       <div>
      <header className="global-header">
-          <a className="header-section unpub-articles">UNPUBLISHED ARTICLES(interpolate #)</a>
+          <a className="header-section unpub-articles">UNPUBLISHED ARTICLES(66)</a>
           <a className="header-section author">AUTHOR</a>
           <a className="header-section words" onClick={(event) => this.handleSort(event)}>WORDS</a>
           <a className="header-section submitted" onClick={(event) => this.handlePublished(event)}>SUBMITTED</a>
@@ -184,7 +187,7 @@ class Render extends Component {
           <span className="words">{this.state.render[9].words}</span>
           <span className="submitted">{this.state.render[9].publish_at}</span>
         </div>
-        <button onClick={(event) => this.onClick(event)}>Load More</button>
+        <button className="loadmoreBtn" onClick={(event) => this.onClick(event)}>Load More</button>
       </section>
       </div>
   )}
