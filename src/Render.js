@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styling/App.css';
 import firebase from './util/helpers.js';
+let _ = require('agile')
 
 class Render extends Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class Render extends Component {
     this.state = {
       count: 0,
       articles: [],
-      render: []
+      render: [],
+      wordCount: [],
+      publishedAt: []
     }
   }
 
@@ -19,7 +22,7 @@ class Render extends Component {
     let data = this.props.articles
     // console.log(data);
     for (i = 0; i < 11; i++) {
-      console.log(data[i]);
+      console.log('will mountfirst set', data[i]);
         this.state.render.push(data[i])
       }
       // console.log(this.state);
@@ -50,7 +53,6 @@ class Render extends Component {
   }
 
   handleRender(event) {
-    console.log(this.state.count);
     let i
     let sliced
     let data = this.props.articles
@@ -58,19 +60,21 @@ class Render extends Component {
         console.log("second 10 articles rendered", sliced);
         sliced = data.slice(10, 21)
         this.setState({ count: this.state.count + 1 })
-      } else if (this.state.count === 2){
+      } else if (this.state.count === 2) {
         sliced = data.slice(20, 30)
         this.setState({ count: this.state.count + 1 })
         console.log( "third 10 articles rendered", sliced);
       }
+    let words = []
     let new_render = []
     console.log('sliced', sliced);
     for (i = 0; i < sliced.length; i++) {
       console.log('looping',i, sliced[i]);
         new_render.push(sliced[i])
+        words.push(sliced[i].words)
       }
-      console.log('render array', new_render);
-      this.setState({ render: new_render})
+      console.log('render array', new_render, words);
+      this.setState({ render: new_render, wordCount: words})
   }
 
   handleAjax() {
@@ -89,6 +93,16 @@ class Render extends Component {
 }); }
   }
 
+  handleSort() {
+    console.log('sorting', this.state.wordCount.sort(function (a, b) {  return a - b;  }))
+      let playing = this.state.render
+      playing.sort(function(a, b){
+        return a.words-b.words
+      })
+      console.log(playing);
+      this.setState({ render: playing })
+  }
+
   render() {
     console.log('the STATE render', this.state);
     return (
@@ -96,7 +110,7 @@ class Render extends Component {
      <header className="global-header">
           <a className="header-section unpub-articles">UNPUBLISHED ARTICLES(interpolate #)</a>
           <a className="header-section author">AUTHOR</a>
-          <a className="header-section words">WORDS</a>
+          <a className="header-section words" onClick={(event) => this.handleSort(event)}>WORDS</a>
           <a className="header-section submitted">SUBMITTED</a>
       </header>
       <section>

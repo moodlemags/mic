@@ -6,6 +6,7 @@
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "agile": "0.0.2",
     "axios": "^0.14.0",
     "fs": "0.0.1-security",
     "jquery": "^3.1.0",
