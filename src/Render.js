@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './styling/App.css';
-import $ from "jquery";
 import firebase from './util/helpers.js';
 
 class Render extends Component {
@@ -35,7 +34,6 @@ class Render extends Component {
 
   onClick(event) {
     console.log('clicking');
-    this.setState({ count: this.state.count + 1 })
     this.clearState();
   }
 
@@ -45,7 +43,7 @@ class Render extends Component {
     console.log('count', this.state.count);
     if (this.state.count <= 2) {
       this.handleRender();
-    } if (this.state.count >= 3) {
+    } else if (this.state.count === 3) {
       console.log('will ajax');
       this.handleAjax();
     }
@@ -59,14 +57,16 @@ class Render extends Component {
       if (this.state.count <= 1) {
         console.log("second 10 articles rendered", sliced);
         sliced = data.slice(10, 21)
-      } else if (this.state.count == 2){
-        sliced = data.slice(20, 31)
+        this.setState({ count: this.state.count + 1 })
+      } else if (this.state.count === 2){
+        sliced = data.slice(20, 30)
+        this.setState({ count: this.state.count + 1 })
         console.log( "third 10 articles rendered", sliced);
       }
     let new_render = []
     console.log('sliced', sliced);
-    for (i = 0; i < 11; i++) {
-      console.log(sliced[i]);
+    for (i = 0; i < sliced.length; i++) {
+      console.log('looping',i, sliced[i]);
         new_render.push(sliced[i])
       }
       console.log('render array', new_render);
@@ -75,21 +75,18 @@ class Render extends Component {
 
   handleAjax() {
     console.log('hitting ajax');
-    // ajaxHelpers.getFirstTen()
-    // .then(function(response){
-    //   console.log('response', response);
-    // }.bind(this));
-      // let url = '../more-articles.json'
-      // console.log( root );
-      // $.ajax({
-      //   url: url,
-      // }).done(function(response){
-      //   console.log("response: ", response);
-      firebase.getFirstTen().then(res => {
-      console.log('saved responses', res);
+      if (this.state.count === 3) {
+      firebase.getMore().then(res => {
+        let new_render = res.slice(0,11)
+        this.setState({render: new_render, count: this.state.count + 1 })
+      console.log('saved responses', new_render);
     });
-
-// });
+  } else if (this.state.count === 4) {
+  firebase.getMore().then(res => {
+    let new_render = res.slice(10,21)
+    this.setState({render: new_render })
+  console.log('saved responses', new_render);
+}); }
   }
 
   render() {
