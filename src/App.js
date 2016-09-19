@@ -25,8 +25,6 @@ class App extends Component {
     }))
     console.log('props', this.props);
     console.log('state', this.state);
-    // console.log(Object.keys(this.state.article_two));
-    // console.log(this.state.article_two.image);
     return (
       <div className="main-componenet">
         <Render Child articles={this.state.articles}/>
