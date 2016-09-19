@@ -103,6 +103,16 @@ class Render extends Component {
       this.setState({ render: playing })
   }
 
+  handlePublished() {
+    let publishedOn = this.state.render
+    publishedOn.sort(function(a,b){
+      let c = new Date(a.publish_at);
+      let d = new Date(b.publish_at);
+      return c-d;
+      });
+      this.setState({ render: publishedOn})
+  }
+
   render() {
     console.log('the STATE render', this.state);
     return (
@@ -111,7 +121,7 @@ class Render extends Component {
           <a className="header-section unpub-articles">UNPUBLISHED ARTICLES(interpolate #)</a>
           <a className="header-section author">AUTHOR</a>
           <a className="header-section words" onClick={(event) => this.handleSort(event)}>WORDS</a>
-          <a className="header-section submitted">SUBMITTED</a>
+          <a className="header-section submitted" onClick={(event) => this.handlePublished(event)}>SUBMITTED</a>
       </header>
       <section>
         <div className="article-section-styleone">
